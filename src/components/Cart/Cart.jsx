@@ -4,8 +4,14 @@ import useStyles from "./styles";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
 
-const Cart = ({ cart }) => {
+const Cart = ({
+  cart,
+  handleEmptyCart,
+  handleUpdateCart,
+  handleRemoveCart,
+}) => {
   const classes = useStyles();
+
   const EmptyCart = () => (
     <Typography variant="subtitle1">
       <Link to="/" className={classes.link} e>
@@ -15,10 +21,14 @@ const Cart = ({ cart }) => {
   );
   const FilledCart = () => (
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {cart.line_items.map((item) => (
-          <Grid item xs={12} sm={4} key={item.id}>
-            <CartItem item={item} />
+          <Grid item xs={12} sm={3} key={item.id}>
+            <CartItem
+              item={item}
+              handleUpdateCart={handleUpdateCart}
+              handleRemoveCart={handleRemoveCart}
+            />
           </Grid>
         ))}
       </Grid>
@@ -29,6 +39,7 @@ const Cart = ({ cart }) => {
 
         <div>
           <Button
+            onClick={handleEmptyCart}
             className={classes.emptyButton}
             size="large"
             type="button"
@@ -43,6 +54,8 @@ const Cart = ({ cart }) => {
             type="button"
             variant="contained"
             color="primary"
+            component={Link}
+            to="/checkout"
           >
             Checkout
           </Button>
