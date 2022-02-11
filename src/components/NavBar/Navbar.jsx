@@ -35,7 +35,7 @@ const Navbar = ({ totalItems }) => {
               height="25px"
               className={classes.image}
             />{" "}
-            ShopUp
+            notAmazon
           </Typography>
           <div className={classes.grow} />
           {location.pathname === "/" ? (

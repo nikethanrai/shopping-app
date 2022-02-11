@@ -67,10 +67,11 @@ const Cart = ({
 
   return (
     <Container>
-      <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>
-        Your Shopping Cart
-      </Typography>
+      <div>
+        <Typography className={classes.title} variant="h4" gutterBottom>
+          Your Shopping Cart
+        </Typography>
+      </div>
       {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   );
