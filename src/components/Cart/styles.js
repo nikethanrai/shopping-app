@@ -5,6 +5,9 @@ export default makeStyles((theme) => ({
   title: {
     marginTop: "7%",
   },
+  divider: {
+    marginTop: "8%",
+  },
   emptyButton: {
     minWidth: "150px",
     [theme.breakpoints.down("xs")]: {

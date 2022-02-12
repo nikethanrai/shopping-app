@@ -1,5 +1,12 @@
 import React from "react";
-import { Container, Typography, Button, Grid } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  Button,
+  Grid,
+  CssBaseline,
+  Divider,
+} from "@material-ui/core";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem/CartItem";
@@ -13,14 +20,24 @@ const Cart = ({
   const classes = useStyles();
 
   const EmptyCart = () => (
-    <Typography variant="subtitle1">
-      <Link to="/" className={classes.link} e>
-        You have no items
-      </Link>
-    </Typography>
+    <>
+      <div>
+        <Typography variant="subtitle1">
+          <Link to="/" className={classes.link} e>
+            You have no items
+          </Link>
+        </Typography>
+      </div>
+
+      <br />
+      <Button component={Link} variant="outlined" type="button" to="/">
+        Back to home
+      </Button>
+    </>
   );
   const FilledCart = () => (
     <>
+      <CssBaseline />
       <Grid container spacing={2}>
         {cart.line_items.map((item) => (
           <Grid item xs={12} sm={3} key={item.id}>
@@ -67,11 +84,10 @@ const Cart = ({
 
   return (
     <Container>
-      <div>
-        <Typography className={classes.title} variant="h4" gutterBottom>
-          Your Shopping Cart
-        </Typography>
-      </div>
+      ={" "}
+      <Typography className={classes.title} variant="h4" gutterBottom>
+        Your Shopping Cart
+      </Typography>
       {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
     </Container>
   );
