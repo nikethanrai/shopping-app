@@ -18,21 +18,28 @@ const steps = ["Shipping address", "Payment details"];
 
 const Checkout = ({ cart }) => {
   const classes = useStyles();
-  // const [checkoutToken, setCheckoutToken] = useState(null);
+  const [checkoutToken, setCheckoutToken] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
-
-  // useEffect(() => {
-  //   const generateToken = async () => {
-  //     try {
-  //       const token = await commerce.checkout.generateToken(cart.id);
-  //       setCheckoutToken(token);
-  //     } catch (err) {}
-  //   };
-  // }, [cart]);
+  useEffect(() => {
+    const generateToken = async () => {
+      try {
+        const token = await commerce.checkout.generateToken(cart.id, {
+          type: "cart",
+        });
+        setCheckoutToken(token);
+      } catch (err) {}
+    };
+    generateToken();
+  }, [cart]);
 
   const Confirmation = () => <div>Confirmation</div>;
 
-  const Form = () => (activeStep === 0 ? <AddressForm /> : <PaymentForm />);
+  const Form = () =>
+    activeStep === 0 ? (
+      <AddressForm checkoutToken={checkoutToken} />
+    ) : (
+      <PaymentForm />
+    );
   return (
     <>
       <div className={classes.toolbar}>
@@ -48,7 +55,11 @@ const Checkout = ({ cart }) => {
                 </Step>
               ))}
             </Stepper>
-            {activeStep === steps.length ? <Confirmation /> : <Form />}
+            {activeStep === steps.length ? (
+              <Confirmation />
+            ) : (
+              checkoutToken && <Form />
+            )}
           </Paper>
         </main>
       </div>

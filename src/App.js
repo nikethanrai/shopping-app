@@ -38,7 +38,6 @@ function App() {
     fetchProducts();
     fetchCart();
   }, []);
-  console.log(cart);
   return (
     <Router>
       <div className="App">
