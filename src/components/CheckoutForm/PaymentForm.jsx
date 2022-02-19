@@ -72,7 +72,7 @@ const PaymentForm = ({
         Payment method
       </Typography>
       <Typography variant="h9" gutterBottom>
-        Dummy Card:(4242 4242 4242 4242) (04/24) (CVC: 424 zip:42424 )
+        Dummy Card:(4242 4242 4242 4242) (04/24) (CVC: 242 zip:42424 )
       </Typography>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
