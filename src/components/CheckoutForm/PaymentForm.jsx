@@ -68,8 +68,11 @@ const PaymentForm = ({
     <>
       <Review checkoutToken={checkoutToken} />
       <Divider />
-      <Typography variant="h6" gutterBottom style={{ margin: "20px 0" }}>
+      <Typography variant="h6" gutterBottom style={{ margin: "10px 0" }}>
         Payment method
+      </Typography>
+      <Typography variant="h9" gutterBottom>
+        Dummy Card:(4242 4242 4242 4242) (04/24) (CVC: 424 zip:42424 )
       </Typography>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
